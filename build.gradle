@@ -12,6 +12,11 @@ compileJava {
 sourceSets {
   main.java.srcDirs 'src'
   test.java.srcDirs 'test'
+  main {
+   java {
+   exclude 'test/**'
+   }
+  }
 }
 
 repositories { mavenCentral() }
@@ -30,5 +35,12 @@ jar {
 
 pmd {
   toolVersion = "6.39.0"
-  
+  ignoreFailures = true
+
+   pmdTest {
+        excludes = [
+                'test/org/jetbrains/java/decompiler/*.java'
+             
+        ]
+    }
 }
